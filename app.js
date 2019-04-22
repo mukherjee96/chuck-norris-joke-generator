@@ -13,20 +13,19 @@ function getJokes(e) {
     document.getElementById('number').value = '';
 
     if(parseInt(number) === NaN) {
-        stat.innerText = 'Please enter a number.';
-        return;
+        stat.innerText = 'Chuck Norris: Enter a number!';
+    } else {
+        fetch(`https://api.icndb.com/jokes/random/${number}`).then(res => res.json()).then(data => {
+            const fetchedTime = performance.now();
+            let result = '';
+            data.value.forEach(joke => {
+                result += `<li>${joke.joke}</li>`;
+            });
+            stat.innerText = `Generated ${number} jokes in ${Math.round(fetchedTime - time)} ms.`;
+            jokes.innerHTML = result;
+            e.target.innerText = 'Get Jokes!';
+        }).catch(err => stat.innerText = 'Chuck Norris: Try again!';);
     }
-
-    fetch(`https://api.icndb.com/jokes/random/${number}`).then(res => res.json()).then(data => {
-        const fetchedTime = performance.now();
-        let result = '';
-        data.value.forEach(joke => {
-            result += `<li>${joke.joke}</li>`;
-        });
-        stat.innerText = `Generated ${number} jokes in ${Math.round(fetchedTime - time)} ms.`;
-        jokes.innerHTML = result;
-        e.target.innerText = 'Get Jokes!';
-    }).catch(err => jokes.innerHTML = '<li>Something went wrong. Try again!</li>');
 
     e.preventDefault();
 }
