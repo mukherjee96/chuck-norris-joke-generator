@@ -17,7 +17,6 @@ function getJokes(e) {
         data.value.forEach(joke => {
             result += `<li>${joke.joke}</li>`;
         });
-        console.log(time, fetchedTime);
         stat.innerText = `Generated ${number} jokes in ${Math.round(fetchedTime - time)} ms.`;
         jokes.innerHTML = result;
         e.target.innerText = 'Get Jokes!';
