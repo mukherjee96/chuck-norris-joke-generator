@@ -12,8 +12,9 @@ function getJokes(e) {
     stat.value = '';
     document.getElementById('number').value = '';
 
-    if(parseInt(number) === NaN) {
+    if(isNaN(parseInt(number))) {
         stat.innerText = 'Chuck Norris: Enter a number!';
+        e.target.innerText = 'Get Jokes!';
     } else {
         fetch(`https://api.icndb.com/jokes/random/${number}`).then(res => res.json()).then(data => {
             const fetchedTime = performance.now();
@@ -24,7 +25,10 @@ function getJokes(e) {
             stat.innerText = `Generated ${number} jokes in ${Math.round(fetchedTime - time)} ms.`;
             jokes.innerHTML = result;
             e.target.innerText = 'Get Jokes!';
-        }).catch(err => stat.innerText = 'Chuck Norris: Try again!';);
+        }).catch(err => {
+            stat.innerText = 'Chuck Norris: Something went wrong!';
+            e.target.innerText = 'Get Jokes!';
+        });
     }
 
     e.preventDefault();
