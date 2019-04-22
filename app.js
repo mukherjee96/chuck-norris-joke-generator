@@ -26,7 +26,7 @@ function getJokes(e) {
             jokes.innerHTML = result;
             e.target.innerText = 'Get Jokes!';
         }).catch(err => {
-            stat.innerText = 'Chuck Norris: Something went wrong!';
+            stat.innerText = 'Chuck Norris: Something went wrong, try again!';
             e.target.innerText = 'Get Jokes!';
         });
     }
