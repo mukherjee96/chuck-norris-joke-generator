@@ -10,6 +10,12 @@ function getJokes(e) {
         stat = document.getElementById('stat');
 
     stat.value = '';
+    document.getElementById('number').value = '';
+
+    if(parseInt(number) === NaN) {
+        stat.innerText = 'Please enter a number.';
+        return;
+    }
 
     fetch(`https://api.icndb.com/jokes/random/${number}`).then(res => res.json()).then(data => {
         const fetchedTime = performance.now();
