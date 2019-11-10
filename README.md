@@ -1,2 +1,3 @@
 # Chuck Norris Joke Generator
-A simple websie featuring Fetch API in JavaScript.
+A simple website featuring Fetch API in JavaScript.
+https://mukherjee96.github.io/chuck-norris-joke-generator/
